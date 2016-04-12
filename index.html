@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="HTML File System Wrapper : A simple wrapper written so that working with the HTML file system is easier.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>HTML File System Wrapper</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/DrRoach/HTMLFileSystemWrapper">View on GitHub</a>
+
+          <h1 id="project_title">HTML File System Wrapper</h1>
+          <h2 id="project_tagline">A simple wrapper written so that working with the HTML file system is easier.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/DrRoach/HTMLFileSystemWrapper/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/DrRoach/HTMLFileSystemWrapper/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="html-5-file-system-wrapper" class="anchor" href="#html-5-file-system-wrapper" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HTML 5 File System Wrapper</h1>
+
+<p>This wrapper is to make developers lives' easier.</p>
+
+<p>A simple wrapper that I created so that it is easier to use the HTML file system. The HTML API for the file system 
+is awkward, confusing and badly documented. This wrapper enables you to start writing to files on the clients machine 
+in just two lines of code.</p>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>Just include the <code>FileSystem.js</code> file in your project and have instant access to the <code>FileSystem</code> object.</p>
+
+<p>Example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&lt;</span>script src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>FileSystem.js<span class="pl-pds">"</span></span><span class="pl-k">&gt;&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span>
+<span class="pl-k">...</span>
+<span class="pl-k">&lt;</span>script<span class="pl-k">&gt;</span>
+<span class="pl-k">var</span> fs <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">FileSystem</span>(<span class="pl-c1">50</span><span class="pl-k">*</span><span class="pl-c1">1024</span><span class="pl-k">*</span><span class="pl-c1">1024</span> <span class="pl-c">/*5MB*/</span>, <span class="pl-smi">FileSystem</span>.<span class="pl-c1">PERSISTENT</span>);
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre></div>
+
+<h3>
+<a id="basic-usage" class="anchor" href="#basic-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Basic Usage</h3>
+
+<p>Create a new file:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> fs <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">FileSystem</span>(<span class="pl-c1">500</span><span class="pl-k">*</span><span class="pl-c1">1024</span><span class="pl-k">*</span><span class="pl-c1">1024</span> <span class="pl-c">/*50MB*/</span>, <span class="pl-smi">FileSystem</span>.<span class="pl-c1">TEMPORARY</span>);
+<span class="pl-smi">fs</span>.<span class="pl-en">create</span>(<span class="pl-s"><span class="pl-pds">"</span>newFile.json<span class="pl-pds">"</span></span>);</pre></div>
+
+<h3>
+<a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>"Advanced" Usage</h3>
+
+<p>Storing JSON in a file:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">fs</span>.<span class="pl-c1">write</span>(<span class="pl-s"><span class="pl-pds">"</span>data.json<span class="pl-pds">"</span></span>, <span class="pl-c1">JSON</span>.<span class="pl-en">stringify</span>({
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Ryan<span class="pl-pds">"</span></span>,
+    age<span class="pl-k">:</span> <span class="pl-c1">20</span>,
+    occupation<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Student<span class="pl-pds">"</span></span>
+}));</pre></div>
+
+<p>Reading from a file (using previous file example):</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">fs</span>.<span class="pl-en">read</span>(<span class="pl-s"><span class="pl-pds">"</span>data.json<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">r</span>) {
+    r <span class="pl-k">=</span> <span class="pl-c1">JSON</span>.<span class="pl-c1">parse</span>(r);
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">r</span>.<span class="pl-c1">name</span>); <span class="pl-c">//Ryan</span>
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">r</span>.<span class="pl-smi">age</span>); <span class="pl-c">//20</span>
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">r</span>.<span class="pl-smi">occupation</span>); <span class="pl-c">//Student</span>
+});</pre></div>
+
+<h4>
+<a id="methods" class="anchor" href="#methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Methods</h4>
+
+<p><code>FileSystem(size, storageType)</code> - The constructor that's called when requesting a file system. The size is the 
+requested size of the virtual file system in bytes. The storage type can be one of two: <code>FileSystem.PERSISTENT</code> or 
+<code>FileSystem.TEMPORARY</code>.</p>
+
+<p><code>create(filename)</code> - Create a file. Pass a desired name as a string.</p>
+
+<p><code>write(filename, text, position, createFile)</code> - Write text to a file. The filename that you give is the file that will 
+be written to. If it doesn't exist, and createFile is true (default), then the file will be created. The <code>text</code> variable 
+is pretty self explanatory. The position is where in the file you want to start writing. Two possibilities are: 
+<code>FileSystem.START</code> and <code>FileSystem.END</code>.</p>
+
+<p><code>remove(filename)</code> - Delete a file. Pass the files' name as a string.</p>
+
+<p><code>read(filename, callback)</code> - Read the text from a given file and then run the callback. The only parameter passed to the 
+callback is the contents of the file.</p>
+
+<h3>
+<a id="notes" class="anchor" href="#notes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Notes</h3>
+
+<p>Because this project is in alpha, there is a very strong chance that backwards compatibility may not always be a forethought. 
+I'm sorry about this, but as soon as a BETA tag is added, this problem will become obsolete.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">HTML File System Wrapper maintained by <a href="https://github.com/DrRoach">DrRoach</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
