@@ -116,19 +116,21 @@ SimpleFileSystem.prototype.write = function(fileName, data, position, create, ca
     }
 };
 
-SimpleFileSystem.prototype.remove = function(file) {
+SimpleFileSystem.prototype.remove = function(file, callback) {
     //Check to see if the file system has been created yet
     if (typeof this.fileSystem == "undefined") {
         //File system hasn't been created, store the file to be created later
         SimpleFileSystem.push(this, "remove", {
             file: file,
+            callback: callback,
             cb: remove
         })
     } else {
         //Create file using String
         remove(this, {
             data: {
-                file: file
+                file: file,
+                callback: callback
             }
         });
     }
@@ -136,7 +138,9 @@ SimpleFileSystem.prototype.remove = function(file) {
     function remove(self, ret) {
         //Remove the file
         self.fileSystem.root.getFile(ret.data.file, {create: true}, function(fileEntry) {
-            fileEntry.remove(function(e){});
+            fileEntry.remove(function(e){
+                callback();
+            });
         });
     }
 };
