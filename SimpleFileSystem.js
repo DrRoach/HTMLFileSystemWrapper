@@ -58,7 +58,7 @@ SimpleFileSystem.prototype.create = function(file) {
     }
 };
 
-SimpleFileSystem.prototype.write = function(fileName, data, position, create) {
+SimpleFileSystem.prototype.write = function(fileName, data, position, create, callback) {
     //Set default action of position to append
     //Can't use shorthand for this due to FileSystem.OVERWRITE being 0
     if (typeof position == "undefined") {
@@ -107,6 +107,9 @@ SimpleFileSystem.prototype.write = function(fileName, data, position, create) {
                 //When the writer is done, destroy it
                 writer.onwriteend = function() {
                     writer.abort();
+                    if (typeof callback != "undefined") {
+                        callback();
+                    }
                 }
             });
         });

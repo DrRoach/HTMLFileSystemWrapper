@@ -77,13 +77,14 @@ Create a file. Pass a desired name as a string.
 ####write
 
 ```JS
-write(filename, text, position, createFile)
+write(filename, text, position, createFile, callback)
 ```
 
 Write text to a file. The filename that you give is the file that will 
 be written to. If it doesn't exist, and createFile is true (default), then the file will be created. The `text` variable 
 is pretty self explanatory. The position is where in the file you want to start writing. Two possibilities are: 
-`SimpleFileSystem.START` and `SimpleFileSystem.END`.
+`SimpleFileSystem.START` and `SimpleFileSystem.END`. The callback is an optional callback to be called when write has 
+successfully finished.
 
 ####remove
 
