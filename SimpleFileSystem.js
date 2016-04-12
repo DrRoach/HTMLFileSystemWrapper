@@ -1,4 +1,4 @@
-var FileSystem = function(size, type) {
+var SimpleFileSystem = function(size, type) {
     //Make sure we're using the correct request call
     window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 
@@ -24,7 +24,7 @@ var FileSystem = function(size, type) {
     });
 
     //Add event listener to document so we know when file system is ready
-    document.addEventListener('FileSystemReady', FileSystem.runStacks, false);
+    document.addEventListener('FileSystemReady', SimpleFileSystem.runStacks, false);
 
     //Array to store list of files to be created after file system is ready
     this.files = {
@@ -35,11 +35,11 @@ var FileSystem = function(size, type) {
     };
 };
 
-FileSystem.prototype.create = function(file) {
+SimpleFileSystem.prototype.create = function(file) {
     //Check to see if the file system has been created yet
     if (typeof this.fileSystem == "undefined") {
         //File system hasn't been created, store the file to be created later
-        FileSystem.push(this, "create", {
+        SimpleFileSystem.push(this, "create", {
             name: file,
             cb: create
         });
@@ -54,18 +54,18 @@ FileSystem.prototype.create = function(file) {
     }
 };
 
-FileSystem.prototype.write = function(fileName, data, position, create) {
+SimpleFileSystem.prototype.write = function(fileName, data, position, create) {
     //Set default action of position to append
     //Can't use shorthand for this due to FileSystem.OVERWRITE being 0
     if (typeof position == "undefined") {
-        position = position || FileSystem.APPEND;
+        position = position || SimpleFileSystem.APPEND;
     }
     //Set default action of create to true
     create = create || true;
 
     if (typeof this.fileSystem == "undefined") {
         //File system hasn't been created yet. Store the data to be saved later
-        FileSystem.push(this, "write", {
+        SimpleFileSystem.push(this, "write", {
             name: fileName,
             data: data,
             position: position,
@@ -90,7 +90,7 @@ FileSystem.prototype.write = function(fileName, data, position, create) {
             //Create the file writer
             fileEntry.createWriter(function(writer) {
                 //Make sure the file writer is in the right position
-                if (ret.data.position == FileSystem.END) {
+                if (ret.data.position == SimpleFileSystem.END) {
                     //Move the writer to the EOF
                     writer.seek(writer.length);
                 } else {
@@ -109,11 +109,11 @@ FileSystem.prototype.write = function(fileName, data, position, create) {
     }
 };
 
-FileSystem.prototype.remove = function(file) {
+SimpleFileSystem.prototype.remove = function(file) {
     //Check to see if the file system has been created yet
     if (typeof this.fileSystem == "undefined") {
         //File system hasn't been created, store the file to be created later
-        FileSystem.push(this, "remove", {
+        SimpleFileSystem.push(this, "remove", {
             file: file,
             cb: remove
         })
@@ -130,11 +130,11 @@ FileSystem.prototype.remove = function(file) {
     }
 };
 
-FileSystem.prototype.read = function(file, callback) {
+SimpleFileSystem.prototype.read = function(file, callback) {
     //Check to see if the file system has been created
     if (typeof this.fileSystem == "undefined") {
         //File system hasn't been created, store the file to be created later
-        FileSystem.push(this, "read", {
+        SimpleFileSystem.push(this, "read", {
             file: file,
             callback: callback,
             cb: read
@@ -162,13 +162,13 @@ FileSystem.prototype.read = function(file, callback) {
     }
 };
 
-FileSystem.PERSISTENT = window.PERSISTENT;
-FileSystem.TEMPORARY = window.TEMPORARY;
+SimpleFileSystem.PERSISTENT = window.PERSISTENT;
+SimpleFileSystem.TEMPORARY = window.TEMPORARY;
 
-FileSystem.BEGINNING = 0;
-FileSystem.END = 1;
+SimpleFileSystem.BEGINNING = 0;
+SimpleFileSystem.END = 1;
 
-FileSystem.runStacks = function(data) {
+SimpleFileSystem.runStacks = function(data) {
     var methods = [
         "create",
         "write",
@@ -177,18 +177,18 @@ FileSystem.runStacks = function(data) {
     ];
 
     for (var i = 0; i < methods.length; i++) {
-        FileSystem.stack(data.detail.self, methods[i], data.detail.files[methods[i]]);
+        SimpleFileSystem.stack(data.detail.self, methods[i], data.detail.files[methods[i]]);
     }
 };
 
-FileSystem.push = function(self, func, data) {
+SimpleFileSystem.push = function(self, func, data) {
     var store = {
         data: data
     };
     self.files[func].push(store)
 };
 
-FileSystem.stack = function(self, func, data, cb) {
+SimpleFileSystem.stack = function(self, func, data, cb) {
     for (var i = 0; i < data.length; i++) {
         data[i].data.cb(self, data[i]);
     }

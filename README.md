@@ -10,15 +10,15 @@ is awkward, confusing and badly documented. This wrapper enables you to start wr
 in just two lines of code.
 
 #Getting Started
-Just include the `FileSystem.js` file in your project and have instant access to the `FileSystem` object.
+Just include the `SimpleFileSystem.js` file in your project and have instant access to the `SimpleFileSystem` object.
 
 Example:
 
 ```JS
-<script src="FileSystem.js"></script>
+<script src="SimpleFileSystem.js"></script>
 ...
 <script>
-var fs = new FileSystem(50*1024*1024 /*5MB*/, FileSystem.PERSISTENT);
+var fs = new SimpleFileSystem(50*1024*1024 /*5MB*/, SimpleFileSystem.PERSISTENT);
 </script>
 ```
 
@@ -27,7 +27,7 @@ var fs = new FileSystem(50*1024*1024 /*5MB*/, FileSystem.PERSISTENT);
 Create a new file:
 
 ```JS
-var fs = new FileSystem(500*1024*1024 /*50MB*/, FileSystem.TEMPORARY);
+var fs = new SimpleFileSystem(500*1024*1024 /*50MB*/, SimpleFileSystem.TEMPORARY);
 fs.create("newFile.json");
 ```
 
@@ -56,15 +56,15 @@ fs.read("data.json", function(r) {
 
 ###Methods
 
-####FileSystem
+####SimpleFileSystem
 
 ```JS
-FileSystem(size, storageType)
+SimpleFileSystem(size, storageType)
 ```
 
 The constructor that's called when requesting a file system. The size is the 
-requested size of the virtual file system in bytes. The storage type can be one of two: `FileSystem.PERSISTENT` or 
-`FileSystem.TEMPORARY`.
+requested size of the virtual file system in bytes. The storage type can be one of two: `SimpleFileSystem.PERSISTENT` or 
+`SimpleFileSystem.TEMPORARY`.
 
 ####create
 
@@ -83,7 +83,7 @@ write(filename, text, position, createFile)
 Write text to a file. The filename that you give is the file that will 
 be written to. If it doesn't exist, and createFile is true (default), then the file will be created. The `text` variable 
 is pretty self explanatory. The position is where in the file you want to start writing. Two possibilities are: 
-`FileSystem.START` and `FileSystem.END`.
+`SimpleFileSystem.START` and `SimpleFileSystem.END`.
 
 ####remove
 
