@@ -12,7 +12,7 @@ Just include the `FileSystem.js` file in your project and have instant access to
 
 Example:
 
-```
+```JS
 <script src="FileSystem.js"></script>
 ...
 <script>
@@ -24,7 +24,7 @@ var fs = new FileSystem(50*1024*1024 /*5MB*/, FileSystem.PERSISTENT);
 
 Create a new file:
 
-```
+```JS
 var fs = new FileSystem(500*1024*1024 /*50MB*/, FileSystem.TEMPORARY);
 fs.create("newFile.json");
 ```
@@ -33,7 +33,7 @@ fs.create("newFile.json");
 
 Storing JSON in a file:
 
-```
+```JS
 var fs = new FileSystem(500*1024*1024 /*50MB*/, FileSystem.PERSISTENT);
 fs.write("data.json", JSON.stringify({
     name: "Ryan",
