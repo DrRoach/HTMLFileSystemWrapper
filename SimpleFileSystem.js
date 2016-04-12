@@ -153,7 +153,8 @@ SimpleFileSystem.prototype.read = function(file, callback) {
     } else {
         read(this, {
             data: {
-                file: file
+                file: file,
+                callback: callback
             }
         });
     }
