@@ -34,7 +34,6 @@ fs.create("newFile.json");
 Storing JSON in a file:
 
 ```JS
-var fs = new FileSystem(500*1024*1024 /*50MB*/, FileSystem.PERSISTENT);
 fs.write("data.json", JSON.stringify({
     name: "Ryan",
     age: 20,
@@ -45,7 +44,6 @@ fs.write("data.json", JSON.stringify({
 Reading from a file (using previous file example):
 
 ```JS
-var fs = new FileSystem(500*1024*1024 /*50MB*/, FileSystem.PERSISTENT);
 fs.read("data.json", function(r) {
     r = JSON.parse(r);
     console.log(r.name); //Ryan
