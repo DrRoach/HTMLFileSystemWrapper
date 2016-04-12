@@ -14,7 +14,8 @@ var FileSystem = function(size, type) {
                 files: {
                     create: self.files.create,
                     write: self.files.write,
-                    remove: self.files.remove
+                    remove: self.files.remove,
+                    read: self.files.read
                 },
                 self: self
             }
@@ -29,7 +30,8 @@ var FileSystem = function(size, type) {
     this.files = {
         create: [],
         write: [],
-        remove: []
+        remove: [],
+        read: []
     };
 };
 
@@ -128,6 +130,38 @@ FileSystem.prototype.remove = function(file) {
     }
 };
 
+FileSystem.prototype.read = function(file, callback) {
+    //Check to see if the file system has been created
+    if (typeof this.fileSystem == "undefined") {
+        //File system hasn't been created, store the file to be created later
+        FileSystem.push(this, "read", {
+            file: file,
+            callback: callback,
+            cb: read
+        });
+    } else {
+        read(this, file);
+    }
+
+    function read(self, ret) {
+        //Get the file to read
+        self.fileSystem.root.getFile(ret.data.file, {}, function(fileEntry) {
+            fileEntry.file(function(file) {
+                //Create reader to read file
+                var reader = new FileReader();
+
+                //When done reading, call the callback, passing the text
+                reader.onloadend = function() {
+                    ret.data.callback(this.result);
+                };
+
+                //Read the file
+                reader.readAsText(file);
+            });
+        });
+    }
+};
+
 FileSystem.PERSISTENT = window.PERSISTENT;
 FileSystem.TEMPORARY = window.TEMPORARY;
 
@@ -138,7 +172,8 @@ FileSystem.runStacks = function(data) {
     var methods = [
         "create",
         "write",
-        "remove"
+        "remove",
+        "read"
     ];
 
     for (var i = 0; i < methods.length; i++) {

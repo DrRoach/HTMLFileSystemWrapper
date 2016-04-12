@@ -42,6 +42,18 @@ fs.write("data.json", JSON.stringify({
 }));
 ```
 
+Reading from a file (using previous file example):
+
+```JS
+var fs = new FileSystem(500*1024*1024 /*50MB*/, FileSystem.PERSISTENT);
+fs.read("data.json", function(r) {
+    r = JSON.parse(r);
+    console.log(r.name); //Ryan
+    console.log(r.age); //20
+    console.log(r.occupation); //Student
+});
+```
+
 ####Methods
 
 `FileSystem(size, storageType)` - The constructor that's called when requesting a file system. The size is the 
@@ -56,6 +68,9 @@ is pretty self explanatory. The position is where in the file you want to start 
 `FileSystem.START` and `FileSystem.END`.
 
 `remove(filename)` - Delete a file. Pass the files' name as a string.
+
+`read(filename, callback)` - Read the text from a given file and then run the callback. The only parameter passed to the 
+callback is the contents of the file.
 
 ###Notes
 Because this project is in alpha, there is a very strong chance that backwards compatibility may not always be a forethought. 
