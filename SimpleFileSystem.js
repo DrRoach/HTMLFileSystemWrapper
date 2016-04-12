@@ -45,7 +45,11 @@ SimpleFileSystem.prototype.create = function(file) {
         });
     } else {
         //Create file using String
-        create(this, {data: {name: file }});
+        create(this, {
+            data: {
+                name: file
+            }
+        });
     }
 
     function create(self, ret) {
@@ -119,7 +123,11 @@ SimpleFileSystem.prototype.remove = function(file) {
         })
     } else {
         //Create file using String
-        remove(this, file);
+        remove(this, {
+            data: {
+                file: file
+            }
+        });
     }
 
     function remove(self, ret) {
@@ -140,7 +148,11 @@ SimpleFileSystem.prototype.read = function(file, callback) {
             cb: read
         });
     } else {
-        read(this, file);
+        read(this, {
+            data: {
+                file: file
+            }
+        });
     }
 
     function read(self, ret) {
