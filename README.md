@@ -3,6 +3,8 @@ HTML 5 File System Wrapper
 
 This wrapper is to make developers lives' easier.
 
+[GitHub io page](http://drroach.github.io/HTMLFileSystemWrapper/)
+
 A simple wrapper that I created so that it is easier to use the HTML file system. The HTML API for the file system 
 is awkward, confusing and badly documented. This wrapper enables you to start writing to files on the clients machine 
 in just two lines of code.
