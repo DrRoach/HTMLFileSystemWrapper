@@ -1,40 +1,30 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="HTML File System Wrapper : A simple wrapper written so that working with the HTML file system is easier.">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>HTML File System Wrapper</title>
+    <meta charset="UTF-8">
+    <title>HTML File System Wrapper by DrRoach</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">HTML File System Wrapper</h1>
+      <h2 class="project-tagline">A simple wrapper written so that working with the HTML file system is easier.</h2>
+      <a href="https://github.com/DrRoach/HTMLFileSystemWrapper" class="btn">View on GitHub</a>
+      <a href="https://github.com/DrRoach/HTMLFileSystemWrapper/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/DrRoach/HTMLFileSystemWrapper/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/DrRoach/HTMLFileSystemWrapper">View on GitHub</a>
-
-          <h1 id="project_title">HTML File System Wrapper</h1>
-          <h2 id="project_tagline">A simple wrapper written so that working with the HTML file system is easier.</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/DrRoach/HTMLFileSystemWrapper/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/DrRoach/HTMLFileSystemWrapper/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
+    <section class="main-content">
+      <h1>
 <a id="html-5-file-system-wrapper" class="anchor" href="#html-5-file-system-wrapper" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HTML 5 File System Wrapper</h1>
 
 <p>This wrapper is to make developers lives' easier.</p>
+
+<p><a href="http://drroach.github.io/HTMLFileSystemWrapper/">GitHub io page</a></p>
 
 <p>A simple wrapper that I created so that it is easier to use the HTML file system. The HTML API for the file system 
 is awkward, confusing and badly documented. This wrapper enables you to start writing to files on the clients machine 
@@ -84,20 +74,45 @@ in just two lines of code.</p>
 <h4>
 <a id="methods" class="anchor" href="#methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Methods</h4>
 
-<p><code>FileSystem(size, storageType)</code> - The constructor that's called when requesting a file system. The size is the 
+<h5>
+<a id="filesystem" class="anchor" href="#filesystem" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FileSystem</h5>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">FileSystem</span>(size, storageType)</pre></div>
+
+<p>The constructor that's called when requesting a file system. The size is the 
 requested size of the virtual file system in bytes. The storage type can be one of two: <code>FileSystem.PERSISTENT</code> or 
 <code>FileSystem.TEMPORARY</code>.</p>
 
-<p><code>create(filename)</code> - Create a file. Pass a desired name as a string.</p>
+<h5>
+<a id="create" class="anchor" href="#create" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>create</h5>
 
-<p><code>write(filename, text, position, createFile)</code> - Write text to a file. The filename that you give is the file that will 
+<div class="highlight highlight-source-js"><pre><span class="pl-en">create</span>(filename)</pre></div>
+
+<p>Create a file. Pass a desired name as a string.</p>
+
+<h5>
+<a id="write" class="anchor" href="#write" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>write</h5>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">write</span>(filename, text, position, createFile)</pre></div>
+
+<p>Write text to a file. The filename that you give is the file that will 
 be written to. If it doesn't exist, and createFile is true (default), then the file will be created. The <code>text</code> variable 
 is pretty self explanatory. The position is where in the file you want to start writing. Two possibilities are: 
 <code>FileSystem.START</code> and <code>FileSystem.END</code>.</p>
 
-<p><code>remove(filename)</code> - Delete a file. Pass the files' name as a string.</p>
+<h5>
+<a id="remove" class="anchor" href="#remove" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>remove</h5>
 
-<p><code>read(filename, callback)</code> - Read the text from a given file and then run the callback. The only parameter passed to the 
+<div class="highlight highlight-source-js"><pre><span class="pl-en">remove</span>(filename)</pre></div>
+
+<p>Delete a file. Pass the files' name as a string.</p>
+
+<h5>
+<a id="read" class="anchor" href="#read" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>read</h5>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">read</span>(filename, callback)</pre></div>
+
+<p>Read the text from a given file and then run the callback. The only parameter passed to the 
 callback is the contents of the file.</p>
 
 <h3>
@@ -105,18 +120,15 @@ callback is the contents of the file.</p>
 
 <p>Because this project is in alpha, there is a very strong chance that backwards compatibility may not always be a forethought. 
 I'm sorry about this, but as soon as a BETA tag is added, this problem will become obsolete.</p>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">HTML File System Wrapper maintained by <a href="https://github.com/DrRoach">DrRoach</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/DrRoach/HTMLFileSystemWrapper">HTML File System Wrapper</a> is maintained by <a href="https://github.com/DrRoach">DrRoach</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-    
+    </section>
 
+  
   </body>
 </html>
