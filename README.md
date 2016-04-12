@@ -56,20 +56,50 @@ fs.read("data.json", function(r) {
 
 ####Methods
 
-`FileSystem(size, storageType)` - The constructor that's called when requesting a file system. The size is the 
+#####FileSystem
+
+```JS
+FileSystem(size, storageType)
+```
+
+The constructor that's called when requesting a file system. The size is the 
 requested size of the virtual file system in bytes. The storage type can be one of two: `FileSystem.PERSISTENT` or 
 `FileSystem.TEMPORARY`.
 
-`create(filename)` - Create a file. Pass a desired name as a string.
+#####create
 
-`write(filename, text, position, createFile)` - Write text to a file. The filename that you give is the file that will 
+```JS
+create(filename)
+```
+
+Create a file. Pass a desired name as a string.
+
+#####write
+
+```JS
+write(filename, text, position, createFile)
+```
+
+Write text to a file. The filename that you give is the file that will 
 be written to. If it doesn't exist, and createFile is true (default), then the file will be created. The `text` variable 
 is pretty self explanatory. The position is where in the file you want to start writing. Two possibilities are: 
 `FileSystem.START` and `FileSystem.END`.
 
-`remove(filename)` - Delete a file. Pass the files' name as a string.
+#####remove
 
-`read(filename, callback)` - Read the text from a given file and then run the callback. The only parameter passed to the 
+```JS
+remove(filename)
+```
+
+Delete a file. Pass the files' name as a string.
+
+#####read
+
+```JS
+read(filename, callback)
+```
+
+Read the text from a given file and then run the callback. The only parameter passed to the 
 callback is the contents of the file.
 
 ###Notes
