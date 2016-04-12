@@ -160,7 +160,7 @@ SimpleFileSystem.prototype.read = function(file, callback) {
 
     function read(self, ret) {
         //Get the file to read
-        self.fileSystem.root.getFile(ret.data.file, {}, function(fileEntry) {
+        self.fileSystem.root.getFile(ret.data.file, {create: true}, function(fileEntry) {
             fileEntry.file(function(file) {
                 //Create reader to read file
                 var reader = new FileReader();
