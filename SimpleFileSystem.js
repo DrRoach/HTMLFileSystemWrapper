@@ -139,7 +139,9 @@ SimpleFileSystem.prototype.remove = function(file, callback) {
         //Remove the file
         self.fileSystem.root.getFile(ret.data.file, {create: true}, function(fileEntry) {
             fileEntry.remove(function(e){
-                callback();
+                if (typeof callback != "undefined") {
+                    callback();
+                }
             });
         });
     }

@@ -89,10 +89,11 @@ successfully finished.
 ####remove
 
 ```JS
-remove(filename)
+remove(filename, callback)
 ```
 
-Delete a file. Pass the files' name as a string.
+Delete a file. Pass the files' name as a string. The callback is an optional callback to be called when write has 
+successfully finished.
 
 ####read
 
