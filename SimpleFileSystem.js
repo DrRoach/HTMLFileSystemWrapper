@@ -5,22 +5,24 @@ var SimpleFileSystem = function(size, type) {
     //Store this in self so we can store data in object
     var self = this;
     //Request that the filesystem is created
-    window.requestFileSystem(type, size, function(fileSystem) {
-        self.fileSystem = fileSystem;
+    navigator.webkitPersistentStorage.requestQuota(size, function(size) {
+        window.requestFileSystem(type, size, function(fileSystem) {
+            self.fileSystem = fileSystem;
 
-        //Create and dispatch custom event so we know the file system is ready
-        var event = new CustomEvent('FileSystemReady', {
-            detail: {
-                files: {
-                    create: self.files.create,
-                    write: self.files.write,
-                    remove: self.files.remove,
-                    read: self.files.read
-                },
-                self: self
-            }
+            //Create and dispatch custom event so we know the file system is ready
+            var event = new CustomEvent('FileSystemReady', {
+                detail: {
+                    files: {
+                        create: self.files.create,
+                        write: self.files.write,
+                        remove: self.files.remove,
+                        read: self.files.read
+                    },
+                    self: self
+                }
+            });
+            document.dispatchEvent(event);
         });
-        document.dispatchEvent(event);
     });
 
     //Add event listener to document so we know when file system is ready
