@@ -9,7 +9,7 @@ A simple wrapper that I created so that it is easier to use the HTML file system
 is awkward, confusing and badly documented. This wrapper enables you to start writing to files on the clients machine 
 in just two lines of code.
 
-#Getting Started
+# Getting Started
 Just include the `SimpleFileSystem.js` file in your project and have instant access to the `SimpleFileSystem` object.
 
 Example:
@@ -22,7 +22,7 @@ var fs = new SimpleFileSystem(50*1024*1024 /*5MB*/, SimpleFileSystem.PERSISTENT)
 </script>
 ```
 
-##Basic Usage
+## Basic Usage
 
 Create a new file:
 
@@ -31,7 +31,7 @@ var fs = new SimpleFileSystem(500*1024*1024 /*50MB*/, SimpleFileSystem.TEMPORARY
 fs.create("newFile.json");
 ```
 
-##"Advanced" Usage
+## "Advanced" Usage
 
 Storing JSON in a file:
 
@@ -54,9 +54,9 @@ fs.read("data.json", function(r) {
 });
 ```
 
-###Methods
+### Methods
 
-####SimpleFileSystem
+#### SimpleFileSystem
 
 ```JS
 SimpleFileSystem(size, storageType)
@@ -66,7 +66,7 @@ The constructor that's called when requesting a file system. The size is the
 requested size of the virtual file system in bytes. The storage type can be one of two: `SimpleFileSystem.PERSISTENT` or 
 `SimpleFileSystem.TEMPORARY`.
 
-####create
+#### create
 
 ```JS
 create(filename)
@@ -74,7 +74,7 @@ create(filename)
 
 Create a file. Pass a desired name as a string.
 
-####write
+#### write
 
 ```JS
 write(filename, text, position, createFile, callback)
@@ -86,7 +86,7 @@ is pretty self explanatory. The position is where in the file you want to start 
 `SimpleFileSystem.START` and `SimpleFileSystem.END`. The callback is an optional callback to be called when write has 
 successfully finished.
 
-####remove
+#### remove
 
 ```JS
 remove(filename, callback)
@@ -95,7 +95,7 @@ remove(filename, callback)
 Delete a file. Pass the files' name as a string. The callback is an optional callback to be called when write has 
 successfully finished.
 
-####read
+#### read
 
 ```JS
 read(filename, callback)
@@ -104,6 +104,6 @@ read(filename, callback)
 Read the text from a given file and then run the callback. The only parameter passed to the 
 callback is the contents of the file.
 
-##Notes
+## Notes
 Because this project is in alpha, there is a very strong chance that backwards compatibility may not always be a forethought. 
 I'm sorry about this, but as soon as a BETA tag is added, this problem will become obsolete.
